@@ -1,5 +1,14 @@
+# Virtual environments
 env*/
 venv*/
+env12_7/
+
+# Python cache
 __pycache__/
 *.pyc
+
+# System files
 .DS_Store
+
+# Abaikan file eksperimen lama
+preprocessing/housing_preprocessed/housing_eksperimen_preprocessed.csv
