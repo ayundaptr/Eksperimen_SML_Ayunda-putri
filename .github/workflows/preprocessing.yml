@@ -31,13 +31,13 @@ jobs:
       - name: Run Preprocessing Script
         run: python preprocessing/automate_Ayunda-putri.py
 
-      # 5. Commit and push preprocessed CSV
+      # 5. Commit and push preprocessed CSV (pakai token untuk push)
       - name: Commit and Push Preprocessed CSV
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add preprocessing/housing_preprocessed/housing_automate_preprocessed.csv
           git commit -m "Update preprocessed dataset via GitHub Actions" || echo "No changes to commit"
-          git push
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git push https://x-access-token:${REPO_TOKEN}@github.com/${{ github.repository }}.git HEAD:main
