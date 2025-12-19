@@ -1,13 +1,36 @@
+# =========================
+# Python environment
+# =========================
 # Virtual environments
 venv/
 env12_7/
 
-# Python cache
+# =========================
+# Python cache / build
+# =========================
 __pycache__/
 *.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
 
-# Jupyter Notebook checkpoints
-.ipynb_checkpoints/
+# =========================
+# Jupyter Notebook
+# =========================
+.ipynb_checkpoints
 
-# Preprocessed dataset (opsional, kalau mau generate lewat workflow)
-preprocessing/housing_preprocessed/
+# =========================
+# Logs / temp files
+# =========================
+*.log
+*.tmp
+
+# =========================
+# Preprocessed data
+# =========================
+# Abaikan semua file di folder housing_preprocessed
+preprocessing/housing_preprocessed/*
+
+# Tapi tetap izinkan file utama CSV yang kita butuhkan
+!preprocessing/housing_preprocessed/housing_automate_preprocessed.csv
