@@ -5,7 +5,8 @@ kelas Membangun Sistem Machine Learning.
 
 # Struktur Folder
 
-Eksperimen_SML_Ayunda-putri/
+
+SMSML_AYUNDA-PUTRI/Eksperimen_SML_Ayunda-putri/
 ├── .github/workflows/preprocessing.yml
 ├── housing_raw.csv
 ├── preprocessing/

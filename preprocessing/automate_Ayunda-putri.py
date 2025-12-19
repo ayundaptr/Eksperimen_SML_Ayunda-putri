@@ -13,15 +13,19 @@ class HousingPreprocessor:
         self.cat_cols = None
         self.scaler = StandardScaler()
         self.le = LabelEncoder()
-    
+
+    # =======================
     # Data Loading
+    # =======================
     def load_dataset(self):
         """Load dataset dari CSV"""
         self.df = pd.read_csv(self.dataset_path)
         print("Dataset loaded. Shape:", self.df.shape)
         return self.df
 
+    # =======================
     # Cleaning
+    # =======================
     def remove_duplicates(self):
         """Hapus duplikat"""
         before = self.df.shape[0]
@@ -59,7 +63,9 @@ class HousingPreprocessor:
         print("Outliers handled.")
         return self.df
 
+    # =======================
     # Feature Engineering
+    # =======================
     def scale_numeric(self):
         """Scaling fitur numerik kecuali kolom penting"""
         cols_to_scale = [col for col in self.num_cols if col not in ["bedrooms","bathrooms","stories","parking"]]
@@ -81,7 +87,9 @@ class HousingPreprocessor:
         print("Price binned into categories (based on original price).")
         return self.df
 
+    # =======================
     # Full Preprocessing
+    # =======================
     def preprocess_all(self):
         """Eksekusi semua preprocessing secara berurutan"""
         self.load_dataset()
@@ -94,16 +102,20 @@ class HousingPreprocessor:
         print("Preprocessing complete. Dataset ready for training.")
         return self.df
 
+# =======================
 # Main function
+# =======================
 def main():
-    # path relatif aman untuk GitHub Actions & lokal
+    # BASE_DIR = folder script ini
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+    # Dataset path relatif ke root repo
     dataset_path = os.path.normpath(os.path.join(BASE_DIR, '..', 'housing_raw.csv'))
 
     preprocessor = HousingPreprocessor(dataset_path)
     df_processed = preprocessor.preprocess_all()
 
-    # output folder di dalam folder preprocessing
+    # Output folder di dalam folder preprocessing
     output_dir = os.path.join(BASE_DIR, "housing_preprocessed")
     os.makedirs(output_dir, exist_ok=True)
     output_file = os.path.join(output_dir, "housing_automate_preprocessed.csv")
