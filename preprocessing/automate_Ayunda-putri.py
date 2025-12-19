@@ -14,12 +14,14 @@ class HousingPreprocessor:
         self.scaler = StandardScaler()
         self.le = LabelEncoder()
     
+    # Data Loading
     def load_dataset(self):
         """Load dataset dari CSV"""
         self.df = pd.read_csv(self.dataset_path)
         print("Dataset loaded. Shape:", self.df.shape)
         return self.df
-    
+
+    # Cleaning
     def remove_duplicates(self):
         """Hapus duplikat"""
         before = self.df.shape[0]
@@ -27,22 +29,22 @@ class HousingPreprocessor:
         after = self.df.shape[0]
         print(f"Removed {before - after} duplicate rows.")
         return self.df
-    
+
     def handle_missing_values(self):
         """Isi missing values"""
         self.num_cols = self.df.select_dtypes(include=['int64','float64']).columns
         self.cat_cols = self.df.select_dtypes(include='object').columns
-        
+
         # Numerik: isi dengan median
         self.df[self.num_cols] = self.df[self.num_cols].fillna(self.df[self.num_cols].median())
-        
+
         # Kategorikal: isi dengan modus
         for col in self.cat_cols:
             self.df[col] = self.df[col].fillna(self.df[col].mode()[0])
-        
+
         print("Missing values handled.")
         return self.df
-    
+
     def handle_outliers(self):
         """Deteksi dan hapus outlier menggunakan IQR"""
         for col in self.num_cols:
@@ -56,7 +58,8 @@ class HousingPreprocessor:
             self.df = self.df[(self.df[col] >= lower) & (self.df[col] <= upper)]
         print("Outliers handled.")
         return self.df
-    
+
+    # Feature Engineering
     def scale_numeric(self):
         """Scaling fitur numerik kecuali kolom penting"""
         cols_to_scale = [col for col in self.num_cols if col not in ["bedrooms","bathrooms","stories","parking"]]
@@ -64,20 +67,21 @@ class HousingPreprocessor:
         self.df[cols_to_scale] = self.scaler.fit_transform(self.df[cols_to_scale])
         print("Numeric features scaled (except important columns).")
         return self.df
-    
+
     def encode_categorical(self):
         """Encoding fitur kategorikal"""
         for col in self.cat_cols:
             self.df[col] = self.le.fit_transform(self.df[col])
         print("Categorical features encoded.")
         return self.df
-    
+
     def bin_price(self):
         """Binning kolom price menjadi Low, Medium, High"""
         self.df['price_bin'] = pd.qcut(self.df['price_original'], q=3, labels=["Low","Medium","High"])
         print("Price binned into categories (based on original price).")
         return self.df
-    
+
+    # Full Preprocessing
     def preprocess_all(self):
         """Eksekusi semua preprocessing secara berurutan"""
         self.load_dataset()
@@ -90,15 +94,20 @@ class HousingPreprocessor:
         print("Preprocessing complete. Dataset ready for training.")
         return self.df
 
+# Main function
 def main():
-    dataset_path = "housing_raw.csv"
+    # path relatif aman untuk GitHub Actions & lokal
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    dataset_path = os.path.normpath(os.path.join(BASE_DIR, '..', 'housing_raw.csv'))
+
     preprocessor = HousingPreprocessor(dataset_path)
     df_processed = preprocessor.preprocess_all()
-    
-    output_dir = "./housing_preprocessed"
+
+    # output folder di dalam folder preprocessing
+    output_dir = os.path.join(BASE_DIR, "housing_preprocessed")
     os.makedirs(output_dir, exist_ok=True)
     output_file = os.path.join(output_dir, "housing_automate_preprocessed.csv")
-    
+
     df_processed.to_csv(output_file, index=False)
     print(f"Preprocessed dataset saved as '{output_file}'")
 

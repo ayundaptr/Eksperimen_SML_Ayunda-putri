@@ -11,27 +11,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout repository
+      # 1. Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Setup Python
-      - name: Setup Python
+      # 2. Setup Python
+      - name: Setup Python 3.12
         uses: actions/setup-python@v4
         with:
           python-version: "3.12"
 
-      # Install dependencies
+      # 3. Install dependencies
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pandas numpy scikit-learn
+          pip install pandas numpy scikit-learn matplotlib seaborn
 
-      # Run preprocessing script
+      # 4. Run preprocessing script
       - name: Run Preprocessing Script
         run: python preprocessing/automate_Ayunda-putri.py
 
-      # Commit and push preprocessed file
+      # 5. Commit and push preprocessed CSV
       - name: Commit and Push Preprocessed CSV
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
