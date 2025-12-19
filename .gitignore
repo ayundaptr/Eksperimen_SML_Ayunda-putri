@@ -1,14 +1,29 @@
-# Virtual environments
-env*/
-venv*/
-env12_7/
+# =======================
+# Virtual Environments
+# =======================
+.env*/           # Abaikan folder virtual environment lain
+.venv*/          # Folder venv baru
 
-# Python cache
+# =======================
+# Python Cache / Bytecode
+# =======================
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 
-# System files
+# =======================
+# Jupyter Notebook / Output
+# =======================
+.ipynb_checkpoints/
+
+# =======================
+# System / OS files
+# =======================
 .DS_Store
+Thumbs.db
 
+# =======================
 # Abaikan file eksperimen lama
+# =======================
 preprocessing/housing_preprocessed/housing_eksperimen_preprocessed.csv
