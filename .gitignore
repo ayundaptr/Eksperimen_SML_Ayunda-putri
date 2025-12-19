@@ -1,0 +1,13 @@
+# Virtual environments
+venv/
+env12_7/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Preprocessed dataset (opsional, kalau mau generate lewat workflow)
+preprocessing/housing_preprocessed/
