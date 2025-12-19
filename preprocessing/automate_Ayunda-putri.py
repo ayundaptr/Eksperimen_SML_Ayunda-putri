@@ -91,7 +91,7 @@ class HousingPreprocessor:
         return self.df
 
 def main():
-    dataset_path = "../housing_raw.csv"  
+    dataset_path = "housing_raw.csv"
     preprocessor = HousingPreprocessor(dataset_path)
     df_processed = preprocessor.preprocess_all()
     
