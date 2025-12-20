@@ -35,7 +35,8 @@ sesuai dengan standar yang ditentukan pada kelas Dicoding.
 
 ## Struktur Folder Proyek
 
-preprocessing/housing_preprocessed/
+# (.venv) D:\ASAH DICODING 2025\SMSML_Ayunda-putri\Eksperimen_SML_Ayunda-putri>
+python preprocessing/automate_Ayunda-putri.py
 
 ## Cara Menjalankan Preprocessing Secara Lokal
 
