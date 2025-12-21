@@ -24,6 +24,7 @@ __pycache__/
 Thumbs.db
 
 # =======================
-# Abaikan file eksperimen lama
+# Abaikan file eksperimen / hasil preprocessing
 # =======================
-preprocessing/housing_preprocessed/housing_eksperimen_preprocessed.csv
+preprocessing/waterquality_preprocessed/*
+!preprocessing/waterquality_preprocessed/.gitkeep
