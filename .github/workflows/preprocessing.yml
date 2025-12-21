@@ -33,12 +33,16 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Gunakan folder terbaru
-          git add preprocessing/waterquality_preprocessed/
-          
-          if ! git diff --cached --quiet; then
-            git commit -m "Auto update waterquality preprocessed dataset"
-            git push https://x-access-token:${GITHUB_TOKEN}@github.com/ayundaptr/SMSML_AYUNDA-PUTRI.git main
+          # Pastikan folder ada sebelum git add
+          if [ -d "preprocessing/waterquality_preprocessed" ]; then
+            git add preprocessing/waterquality_preprocessed/
+            
+            if ! git diff --cached --quiet; then
+              git commit -m "Auto update waterquality preprocessed dataset"
+              git push https://x-access-token:${GITHUB_TOKEN}@github.com/ayundaptr/SMSML_AYUNDA-PUTRI.git main
+            else
+              echo "No changes to commit"
+            fi
           else
-            echo "No changes to commit"
+            echo "Folder preprocessing/waterquality_preprocessed tidak ditemukan, skipping git add"
           fi
