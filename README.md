@@ -38,6 +38,8 @@ sesuai dengan standar yang ditentukan pada kelas Dicoding.
 # (.venv) D:\ASAH DICODING 2025\SMSML_Ayunda-putri\Eksperimen_SML_Ayunda-putri>
 python preprocessing/automate_Ayunda-putri.py
 
+.\.venv\Scripts\activate
+
 ## Cara Menjalankan Preprocessing Secara Lokal
 
 Pastikan Python telah terinstall, lalu jalankan perintah berikut:
