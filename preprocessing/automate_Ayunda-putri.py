@@ -103,7 +103,7 @@ def main():
     # Buat folder output
     os.makedirs(output_dir, exist_ok=True)
     timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_file = os.path.join(output_dir, f"water_automate_preprocessed_{timestamp}.csv")
+    output_file = os.path.join(output_dir, f"waterquality_automate_preprocessed_{timestamp}.csv")
     df_processed.to_csv(output_file, index=False)
     print(f"Saved to: {output_file}")
 

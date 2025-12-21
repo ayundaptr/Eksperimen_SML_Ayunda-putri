@@ -33,9 +33,11 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git add preprocessing/housing_preprocessed/
+          # Gunakan folder terbaru
+          git add preprocessing/waterquality_preprocessed/
+          
           if ! git diff --cached --quiet; then
-            git commit -m "Auto update preprocessed dataset"
+            git commit -m "Auto update waterquality preprocessed dataset"
             git push https://x-access-token:${GITHUB_TOKEN}@github.com/ayundaptr/SMSML_AYUNDA-PUTRI.git main
           else
             echo "No changes to commit"
