@@ -36,9 +36,10 @@ Salin kode
 2. Aktifkan virtual environment:
 
 ```bash
-.\.venv\Scripts\activate    # Windows
+.\.venv\Scripts\activate  
+conda deactivate
 # atau
-source .venv/bin/activate   # Linux / macOS
+source .venv/bin/activate  
 Install dependencies:
 
 bash
@@ -66,3 +67,14 @@ Dengan adanya preprocessing otomatis ini, proses persiapan data menjadi lebih ko
 Author
 Ayunda Putri
 Eksperimen untuk kelas Membangun Sistem Machine Learning – Dicoding
+
+
+
+Membangun_model
+├── modelling.py
+├── modelling_tuning.py (menerapkan advanced)
+├── waterquality_preprocessing (berupa folder seperti awal)
+├── screenshoot_dashboard.jpg
+├── screenshoot_artifak.jpg
+├── requirements.txt
+├── DagsHub.txt (berisikan tautan DagsHub untuk menerapkan advanced)
